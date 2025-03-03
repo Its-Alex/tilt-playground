@@ -26,8 +26,7 @@
           containers: [
             {
               name: 'flask-hello-world',
-              image: 'flask-hello-world:latest',
-              imagePullPolicy: 'Never',
+              image: std.extVar('image'),
               ports: [
                 {
                   containerPort: 8080,
@@ -46,12 +45,11 @@
       name: 'flask-hello-world',
     },
     spec: {
-      type: 'NodePort',
+      type: 'ClusterIP',
       ports: [
         {
           port: 8080,
           targetPort: 8080,
-          nodePort: 30001,
         },
       ],
       selector: {

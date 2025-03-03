@@ -1,0 +1,11 @@
+[tools]
+python = "3.12"
+tanka = "0.31.2"
+helm = "3.17.1"
+kind = "0.27.0"
+kubectl = "1.32.1"
+jb = "0.6.0"
+go-jsonnet = "0.20.0"
+
+[env]
+_.python.venv = { path = ".venv", create = true }

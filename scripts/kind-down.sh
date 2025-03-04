@@ -3,4 +3,4 @@ set -e
 
 cd "$(dirname "$0")/../"
 
-kind delete cluster -n local
+ctlptl delete cluster --cascade "true" kind-local

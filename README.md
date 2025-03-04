@@ -37,6 +37,17 @@ $ curl http://localhost:8080/
 Hello, World!
 ```
 
+## Local registry
+
+To use a local registry, you can run:
+
+```bash
+$ ./scripts/kind-up.sh --local-registry 1
+```
+
+This will create a local registry, [tilt](https://github.com/tilt-dev/tilt) will
+automatically use it to store the docker images.
+
 ## Hack it
 
 All steps done by [tilt](https://github.com/tilt-dev/tilt) can be done manually,
@@ -70,7 +81,8 @@ Finally, you can deploy the app in the kind cluster:
 $ ./tanka/scripts/install-vendors.sh && ./tanka/scripts/tk-apply.sh
 ```
 
-Those tasks can be done with the `./scripts/up.sh` script.
+Those tasks can be done with the `./scripts/up.sh` script. Be warned that
+`./scripts/up.sh` will not create and use the local registry.
 
 ## Down
 

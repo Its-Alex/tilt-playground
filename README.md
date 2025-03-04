@@ -28,7 +28,12 @@ corresponding versions.
 
 ## Getting started
 
-First you must start the kube clutser, for that we use [kind](https://kind.sigs.k8s.io/):
+This project use [kind](https://kind.sigs.k8s.io/) and
+[tilt](https://github.com/tilt-dev/tilt) to run a local kubernetes cluster and
+deploy an application in python.
+
+If you want to try, first you must start the kube clutser, for that we use
+[kind](https://kind.sigs.k8s.io/):
 
 ```bash
 $ ./scripts/kind-up.sh
@@ -53,7 +58,9 @@ detect the changes and apply them to the kind cluster.
 
 ## Local registry
 
-To use a local registry, you can run:
+[tilt](https://github.com/tilt-dev/tilt) can use a local registry to store the
+docker images. To use a
+[local registry](https://docs.tilt.dev/personal_registry.html), you can run:
 
 ```bash
 $ ./scripts/kind-up.sh --local-registry 1

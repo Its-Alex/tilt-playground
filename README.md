@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # tilt-playground
 
-This playgroound is aimed to test [tilt](https://github.com/tilt-dev/tilt).
+This playground is aimed to test [tilt](https://github.com/tilt-dev/tilt).
 
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
@@ -71,9 +71,8 @@ automatically use it to store the docker images.
 
 ## Hack it
 
-All steps done by [kind](https://kind.sigs.k8s.io/) and
-[tilt](https://github.com/tilt-dev/tilt) can be done manually, first launch the
-kind cluster:
+All steps done by [tilt](https://github.com/tilt-dev/tilt) can be done manually,
+first launch the kind cluster:
 
 ```bash
 $ ./scripts/kind-up.sh

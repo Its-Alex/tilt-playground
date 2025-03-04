@@ -9,40 +9,5 @@ local_resource(
     ],
 )
 
-docker_build(
-    ref='flask-hello-world',
-    context='services/hello-world',
-    build_args={'flask_debug': 'True'},
-    live_update=[
-        sync('services/hello-world', '/app'),
-        run('cd /app && pip install -r requirements.txt',
-            trigger='./requirements.txt'),
-    ],
-)
-
-# https://docs.tilt.dev/api.html#:~:text=%20tilt_image_i%20-%20the%20reference%20to%20the%20image%20%23i%20(0-based)%20from%20the%20point%20of%20view%20of%20the%20cluster%20container%20runtime.%20
-apply_cmd = """
-./tanka/scripts/tk-apply.sh ${TILT_IMAGE_0}
-kubectl get deployment/flask-hello-world -o yaml
-echo "---"
-kubectl get service/flask-hello-world -o yaml
-"""
-k8s_custom_deploy(
-    name='flask-hello-world',
-    apply_cmd=apply_cmd,
-    delete_cmd='./tanka/scripts/tk-destroy.sh',
-    deps=[
-        'services/hello-world/Dockerfile',
-        'tanka/lib/flask-hello-world.libsonnet',
-        'tanka/environments/',
-    ],
-    image_deps=['flask-hello-world'],
-)
-
-k8s_resource(
-    workload='flask-hello-world',
-    port_forwards=8080,
-    resource_deps=[
-        'tanka-deps',
-    ],
-)
+# include('./tiltfiles/k8s-custom-deploy.tilt')
+include('./tiltfiles/k8s-yaml.tilt')

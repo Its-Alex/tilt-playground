@@ -1,0 +1,23 @@
+docker_build(
+    ref='flask-hello-world',
+    context='../services/hello-world',
+    build_args={'flask_debug': 'True'},
+    live_update=[
+        sync('../services/hello-world', '/app'),
+        run(
+            'cd /app && pip install -r requirements.txt',
+            trigger='../services/hello-world/requirements.txt'
+        ),
+    ],
+)
+
+# https://docs.tilt.dev/api.html#:~:text=%20tilt_image_i%20-%20the%20reference%20to%20the%20image%20%23i%20(0-based)%20from%20the%20point%20of%20view%20of%20the%20cluster%20container%20runtime.%20
+k8s_yaml(local('../tanka/scripts/tk-show.sh'))
+
+k8s_resource(
+    workload='flask-hello-world',
+    port_forwards=8080,
+    resource_deps=[
+        'tanka-deps',
+    ],
+)

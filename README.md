@@ -7,6 +7,7 @@ This playgroound is aimed to test [tilt](https://github.com/tilt-dev/tilt).
 - [Getting started](#getting-started)
 - [Local registry](#local-registry)
 - [Hack it](#hack-it)
+- [Use another tilt configuration](#use-another-tilt-configuration)
 - [Stop and cleanup](#stop-and-cleanup)
 - [Notes on Tilt](#notes-on-tilt)
 - [License](#license)
@@ -97,6 +98,18 @@ $ ./tanka/scripts/install-vendors.sh && ./tanka/scripts/tk-apply.sh
 
 Those tasks can be done with the `./scripts/up.sh` script. Be warned that
 `./scripts/up.sh` will not create and use the local registry.
+
+## Use another tilt configuration
+
+There are some tilt configurations in the [`tiltfiles`](./tiltfiles) directory.
+To use another tilt configuration, you can run:
+
+```bash
+$ tilt down
+```
+
+Then change the [Tiltfile](./Tiltfile) to use another tilt configuration by
+commenting the current one and uncommenting the desired one.
 
 ## Stop and cleanup
 

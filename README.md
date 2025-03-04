@@ -1,6 +1,15 @@
+<!-- omit in toc -->
 # tilt-playground
 
 This playgroound is aimed to test [tilt](https://github.com/tilt-dev/tilt).
+
+- [Prerequisites](#prerequisites)
+- [Getting started](#getting-started)
+- [Local registry](#local-registry)
+- [Hack it](#hack-it)
+- [Stop and cleanup](#stop-and-cleanup)
+- [Notes on Tilt](#notes-on-tilt)
+- [License](#license)
 
 ## Prerequisites
 
@@ -37,6 +46,10 @@ $ curl http://localhost:8080/
 Hello, World!
 ```
 
+You can now try and edit any file in the `services/hello-world` or
+`tanka` directories, [tilt](https://github.com/tilt-dev/tilt) will automatically
+detect the changes and apply them to the kind cluster.
+
 ## Local registry
 
 To use a local registry, you can run:
@@ -50,8 +63,9 @@ automatically use it to store the docker images.
 
 ## Hack it
 
-All steps done by [tilt](https://github.com/tilt-dev/tilt) can be done manually,
-first launch the kind cluster:
+All steps done by [kind](https://kind.sigs.k8s.io/) and
+[tilt](https://github.com/tilt-dev/tilt) can be done manually, first launch the
+kind cluster:
 
 ```bash
 $ ./scripts/kind-up.sh
@@ -84,7 +98,7 @@ $ ./tanka/scripts/install-vendors.sh && ./tanka/scripts/tk-apply.sh
 Those tasks can be done with the `./scripts/up.sh` script. Be warned that
 `./scripts/up.sh` will not create and use the local registry.
 
-## Down
+## Stop and cleanup
 
 To destroy the app, you can run:
 
@@ -98,6 +112,11 @@ Then destroy the kind cluster:
 $ ./scripts/kind-down.sh
 ```
 
+For cleanup, you can run:
+
+```bash
+$ tilt docker-prune
+```
 ## Notes
 
 - [Resource deps](https://docs.tilt.dev/resource_dependencies.html#other-types-of-dependencies) are not supported for every resource type.

@@ -130,10 +130,18 @@ For cleanup, you can run:
 ```bash
 $ tilt docker-prune
 ```
-## Notes
+## Notes on Tilt
 
-- [Resource deps](https://docs.tilt.dev/resource_dependencies.html#other-types-of-dependencies) are not supported for every resource type.
-- [k8s_resource](https://docs.tilt.dev/api.html#k8s_resource) can permit to use resource without defining nodePort. The side effect are that the nodePort configuration should be used in CI and 
+- [Resource deps](https://docs.tilt.dev/resource_dependencies.html#other-types-of-dependencies)
+  are not supported for every resource type.
+- [k8s_resource](https://docs.tilt.dev/api.html#k8s_resource) can permit to use
+  resource without defining nodePort. The side effect are that the nodePort
+  configuration should be used in CI and not in the Tiltfile.
+- There is a little bit a magic with managing the resources. For example,
+  `k8s_resource` will automatically find the resource in the cluster and apply
+  the changes, without them being visible in the cluster.
+- Tilt is written in [Starlark](https://bazel.build/rules/language), there is no
+  real linter or formatter available outside of bazel scope.
 
 ## License
 
